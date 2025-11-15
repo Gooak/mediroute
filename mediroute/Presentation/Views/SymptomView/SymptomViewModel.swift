@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 final class SymptomViewModel: ObservableObject {
     @Published var symptomText: String = "" {
@@ -18,16 +17,18 @@ final class SymptomViewModel: ObservableObject {
     }
     @Published var isSubmitting: Bool = false
     @Published var errorMessage: String? = nil
-
+    
     let maxLength: Int = 1000
-
-    init() {
-    }
-
+    
     var isValid: Bool {
         let trimmed = symptomText.trimmingCharacters(in: .whitespacesAndNewlines)
         return !trimmed.isEmpty
     }
+    
+    init() {
+        
+    }
+
 
     // 제출 함수 (여기에 AI 호출 또는 네트워크 로직 작성)
     func submitSymptom(completion: @escaping (Result<String, Error>) -> Void) {

@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct SymptomInputView: View {
-    @StateObject private var vm = SymptomViewModel()
+    @StateObject private var viewModel = SymptomViewModel()
 
     var body: some View {
-        NavigationView {
             VStack(spacing: 16) {
-                // 타이틀 / 설명
                 VStack(alignment: .leading, spacing: 16) {
                     Text("증상을 입력해 주세요")
                         .font(.title2)
@@ -24,7 +22,6 @@ struct SymptomInputView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading).padding()
 
-                // TextEditor (멀티라인)
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.secondary.opacity(0.25), lineWidth: 1)
@@ -36,7 +33,7 @@ struct SymptomInputView: View {
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.white)))
                         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 
-                    TextEditor(text: $vm.symptomText)
+                    TextEditor(text: $viewModel.symptomText)
                         .padding(8)
                         .frame(minHeight: 140)
                         .accessibilityLabel("증상 입력란")
@@ -44,8 +41,7 @@ struct SymptomInputView: View {
                         .scrollContentBackground(.hidden)
                         .cornerRadius(12)
                     
-                    // Placeholder
-                    if vm.symptomText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    if viewModel.symptomText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Text("증상(증세/언제부터/통증 위치 등)을 자세히 적어주세요...")
                             .foregroundColor(.secondary)
                             .padding(EdgeInsets(top: 14, leading: 14, bottom: 0, trailing: 14))
@@ -54,17 +50,15 @@ struct SymptomInputView: View {
                 }
                 .padding(.horizontal)
 
-                // 글자수와 최대치
                 HStack {
                     Spacer()
-                    Text("\(vm.symptomText.count) / \(vm.maxLength)")
+                    Text("\(viewModel.symptomText.count) / \(viewModel.maxLength)")
                         .font(.caption)
-                        .foregroundColor(vm.symptomText.count > vm.maxLength ? .red : .secondary)
+                        .foregroundColor(viewModel.symptomText.count > viewModel.maxLength ? .red : .secondary)
                         .padding(.trailing, 22)
                 }
 
-                // 에러 메시지
-                if let err = vm.errorMessage {
+                if let err = viewModel.errorMessage {
                     Text(err)
                         .foregroundColor(.red)
                         .font(.caption)
@@ -73,42 +67,24 @@ struct SymptomInputView: View {
                 }
 
                 Spacer()
-                
-                // 제출 버튼
-                Button(action: {
-                    hideKeyboard()
-                    vm.submitSymptom { result in
-                        switch result {
-                        case .success(let response):
-                            // 실제 앱에서는 AI 응답(예: 진료과 코드)을 받아 다음 화면으로 이동
-                            print("AI 응답:", response)
-                        case .failure(let error):
-                            vm.errorMessage = error.localizedDescription
-                        }
-                    }
-                }) {
-                    HStack {
-                        if vm.isSubmitting {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                        }
-                        Text(vm.isSubmitting ? "분석중..." : "AI에게 물어보기")
-                            .bold()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(vm.isValid ? Color.accentColor : Color.gray.opacity(0.4))
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-                    .padding(.horizontal)
-                }
-                .disabled(!vm.isValid || vm.isSubmitting)
-                .accessibilityLabel("AI에게 물어보기 버튼")
+                CostomButton(title : "AI에게 물어보기", loadingText : "분석중...", isSubmitting : $viewModel.isSubmitting, isValid: viewModel.isValid,
+                             action : {
+                                hideKeyboard()
+                                    viewModel.submitSymptom { result in
+                                    switch result {
+                                    case .success(let response):
+                                        // 실제 앱에서는 AI 응답(예: 진료과 코드)을 받아 다음 화면으로 이동
+                                        print("AI 응답:", response)
+                                    case .failure(let error):
+                                        viewModel.errorMessage = error.localizedDescription
+                                    }
+                                }
+                            }
+                )
+                Spacer()
             }
             .padding(.top, )
             .navigationTitle("병원찾아줘")
-            
-        }
     }
 }
 

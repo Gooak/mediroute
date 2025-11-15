@@ -23,7 +23,7 @@ struct medirouteApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SymptomInputView()
+            MainTabView()
         }
         .modelContainer(sharedModelContainer)
     }

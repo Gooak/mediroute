@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4E6ECE472EC84C680076880E /* keys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ECE462EC84C5D0076880E /* keys.xcconfig */; };
+		4E6ECE4D2EC84DBB0076880E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ECE4C2EC84DBB0076880E /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4E6ECD982EC6F5C70076880E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,8 @@
 		4E6ECD882EC6F5C60076880E /* mediroute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mediroute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6ECD972EC6F5C70076880E /* medirouteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = medirouteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6ECDA12EC6F5C70076880E /* medirouteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = medirouteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E6ECE462EC84C5D0076880E /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
+		4E6ECE4C2EC84DBB0076880E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +82,8 @@
 		4E6ECD7F2EC6F5C60076880E = {
 			isa = PBXGroup;
 			children = (
+				4E6ECE462EC84C5D0076880E /* keys.xcconfig */,
+				4E6ECE4C2EC84DBB0076880E /* .gitignore */,
 				4E6ECD8A2EC6F5C60076880E /* mediroute */,
 				4E6ECD9A2EC6F5C70076880E /* medirouteTests */,
 				4E6ECDA42EC6F5C70076880E /* medirouteUITests */,
@@ -212,6 +221,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6ECE472EC84C680076880E /* keys.xcconfig in Resources */,
+				4E6ECE4D2EC84DBB0076880E /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
