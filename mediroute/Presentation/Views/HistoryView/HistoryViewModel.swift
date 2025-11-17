@@ -1,15 +1,14 @@
 //
-//  DiagnosisResultViewModel.swift
+//  HistoryViewModel.swift
 //  mediroute
 //
-//  Created by 황진우 on 11/16/25.
+//  Created by 황진우 on 11/17/25.
 //
 
 import SwiftUI
 
-final class DiagnosisResultViewModel: ObservableObject {
+final class HistoryViewModel: ObservableObject {
     
-    @Published var isLoading: Bool = false // 로딩
     @Published var shouldShowResult = false // 링크 활성화
     
     @Published var latitude : Double? // 위도
@@ -27,7 +26,6 @@ final class DiagnosisResultViewModel: ObservableObject {
     //근처 병원 찾기 버튼 클릭 함수
     @MainActor func findHospital(fullResultText : String, departmentName : String) async {
         do {
-            isLoading = true;
             let location : Location = try await locationUseCase.fetchLocationAndAddress()
             
             hospitalListResult = try await openApiUseCase.getNearByHospital(
@@ -40,12 +38,11 @@ final class DiagnosisResultViewModel: ObservableObject {
             longitude = location.longitude
             
             shouldShowResult = true
-            isLoading = false;
             print("병원 목록 API 호출 성공: \(String(describing: hospitalListResult))")
         } catch {
-            isLoading = false;
             hospitalListResult = []
             print("병원 찾기 과정 중 에러 발생: \(error)")
         }
     }
+    
 }

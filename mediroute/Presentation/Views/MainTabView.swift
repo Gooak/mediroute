@@ -19,6 +19,7 @@ struct MainTabView : View {
             
             NavigationView {
                 HistoryView()
+                
             }
             .tabItem {
                 Image(systemName: "list.bullet.clipboard")

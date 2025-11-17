@@ -47,6 +47,23 @@ enum Config {
         return apiKey
     }
     
+    static var kakaoNativeAppKey: String {
+        guard let infoDictionary = Bundle.main.infoDictionary else {
+            fatalError("Info.plist 파일을 찾을 수 없습니다.")
+        }
+        
+        guard let apiKey = infoDictionary["KakaoNativeAppKey"] as? String else {
+            fatalError("Info.plist에 'GeminiAPIKey'가 설정되지 않았거나 문자열이 아닙니다. $(KAKAO_NATIVE_APP_KEY) 값을 확인하세요.")
+        }
+        
+        
+        if apiKey.isEmpty || apiKey == "여기에_발급받은_API_키를_붙여넣으세요" {
+            fatalError("API 키가 'keys.xcconfig' 파일에 제대로 입력되지 않았습니다. 가이드를 다시 확인하세요.")
+        }
+        
+        return apiKey
+    }
+    
     static let departments: [String : String] = [
         "D001": "내과",
         "D002": "소아청소년과",

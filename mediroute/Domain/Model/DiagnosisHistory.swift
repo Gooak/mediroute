@@ -13,10 +13,12 @@ final class DiagnosisHistory {
     var diagnosisTime: Date
     var symptom: String
     var diagnosisResult: String
+    var departmentsName : String
     
-    init(diagnosisTime: Date, symptom: String, diagnosisResult: String) {
+    init(diagnosisTime: Date, symptom: String, diagnosisResult: String, departmentsName: String) {
         self.diagnosisTime = diagnosisTime
         self.symptom = symptom
         self.diagnosisResult = diagnosisResult
+        self.departmentsName = departmentsName
     }
 }

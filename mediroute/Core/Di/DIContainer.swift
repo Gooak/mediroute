@@ -23,4 +23,5 @@ final class DIContainer {
     // MARK: - UseCase
     lazy var geminiUseCase: GeminiUseCase = GeminiUseCase(repository: geminiRepository)
     lazy var openApiUseCase: OpenApiUseCase = OpenApiUseCase(repository: openApiRepository)
+    lazy var locationUseCase: LocationUseCase = LocationUseCase()
 }
