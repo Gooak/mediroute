@@ -10,7 +10,7 @@ AI 증상 분석으로 내 주변 최적의 병원 찾기
 
 | 증상 입력 | 분석 결과 | 지도 | 진단 내역 |
 |:---:|:---:|:---:|:---:|
-| <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 22 33" src="https://github.com/user-attachments/assets/d9f4da17-14b2-4fd7-b133-2bc2c976a241" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 23 37" src="https://github.com/user-attachments/assets/2b49b826-1e9e-4343-95c1-f94ddf18da80" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 23 51" src="https://github.com/user-attachments/assets/eeb297e6-4861-4d4d-a46f-5e6c0474a75d" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 24 03" src="https://github.com/user-attachments/assets/8dac7876-2698-4b01-8b20-518f6a2c4d27" /> |
+| <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 22 33" src="https://github.com/user-attachments/assets/d9f4da17-14b2-4fd7-b133-2bc2c976a241" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 23 37" src="https://github.com/user-attachments/assets/2b49b826-1e9e-4343-95c1-f94ddf18da80" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 23 51" src="https://github.com/user-attachments/assets/53cc299b-b02f-48b0-9031-6d23b16dbe2b" /> | <img width="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-17 at 22 24 03" src="https://github.com/user-attachments/assets/8dac7876-2698-4b01-8b20-518f6a2c4d27" /> |
 
 ---
 
