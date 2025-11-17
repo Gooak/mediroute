@@ -15,8 +15,11 @@ final class SymptomViewModel: ObservableObject {
             }
         }
     }
-    @Published var isSubmitting: Bool = false
-    @Published var errorMessage: String? = nil
+    @Published var isSubmitting: Bool = false // 입력 완료
+    @Published var errorMessage: String? = nil // 에러 메세지
+    
+    @Published var diagnosisResult: String? // 진단 결과
+    @Published var shouldShowResult = false // 링크 활성화
     
     let maxLength: Int = 1000
     
@@ -25,28 +28,36 @@ final class SymptomViewModel: ObservableObject {
         return !trimmed.isEmpty
     }
     
-    init() {
-        
+    private let useCase: GeminiUseCase
+    
+    init(useCase: GeminiUseCase = DIContainer.Di.geminiUseCase) {
+        self.useCase = useCase
     }
 
 
     // 제출 함수 (여기에 AI 호출 또는 네트워크 로직 작성)
-    func submitSymptom(completion: @escaping (Result<String, Error>) -> Void) {
-        guard isValid else {
-            completion(.failure(NSError(domain: "SymptomError", code: 1, userInfo: [NSLocalizedDescriptionKey: "증상을 입력해 주세요."])))
-            return
-        }
+    func submitSymptom(completionHandler: @escaping () -> Void) {
+        guard isValid else { return }
 
         isSubmitting = true
         errorMessage = nil
 
-        // --- 네트워크/AI 호출 예시 (비동기) ---
-        // 실제로는 URLSession 또는 OpenAI SDK 호출 등을 여기서 수행.
-        // 아래는 예시로 1초 딜레이 후 성공 콜백을 반환.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.isSubmitting = false
-            // 성공 시: completion(.success("내과"))
-            completion(.success("진료과 추천 예시: 내과"))
+        Task {
+            do {
+                let result = try await useCase.getDiagnosis(symptom: symptomText)
+
+                await MainActor.run {
+                    diagnosisResult = result
+                    isSubmitting = false
+                    shouldShowResult = true
+                    completionHandler()
+                }
+            } catch {
+                await MainActor.run {
+                    isSubmitting = false
+                    errorMessage = "요청 중 에러가 발생하였습니다. 다시 시도해 주세요."
+                }
+            }
         }
     }
 }

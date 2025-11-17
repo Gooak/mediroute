@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CostomButton: View {
+struct CustomStateButton: View {
     let title : String
     let loadingText : String
     

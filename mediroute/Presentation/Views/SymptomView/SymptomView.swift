@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SymptomInputView: View {
     @StateObject private var viewModel = SymptomViewModel()
 
+    @Environment(\.modelContext) private var modelContext
+    @Query private var diagnosisHistory: [DiagnosisHistory]
+
     var body: some View {
+        NavigationStack {
             VStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("증상을 입력해 주세요")
@@ -21,7 +26,7 @@ struct SymptomInputView: View {
                         .foregroundColor(.secondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading).padding()
-
+                
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.secondary.opacity(0.25), lineWidth: 1)
@@ -32,7 +37,7 @@ struct SymptomInputView: View {
                         .stroke(Color.secondary.opacity(0.25), lineWidth: 1)
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.white)))
                         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                
+                    
                     TextEditor(text: $viewModel.symptomText)
                         .padding(8)
                         .frame(minHeight: 140)
@@ -49,7 +54,7 @@ struct SymptomInputView: View {
                     }
                 }
                 .padding(.horizontal)
-
+                
                 HStack {
                     Spacer()
                     Text("\(viewModel.symptomText.count) / \(viewModel.maxLength)")
@@ -57,7 +62,7 @@ struct SymptomInputView: View {
                         .foregroundColor(viewModel.symptomText.count > viewModel.maxLength ? .red : .secondary)
                         .padding(.trailing, 22)
                 }
-
+                
                 if let err = viewModel.errorMessage {
                     Text(err)
                         .foregroundColor(.red)
@@ -65,35 +70,43 @@ struct SymptomInputView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-
+                
                 Spacer()
-                CostomButton(title : "AI에게 물어보기", loadingText : "분석중...", isSubmitting : $viewModel.isSubmitting, isValid: viewModel.isValid,
-                             action : {
-                                hideKeyboard()
-                                    viewModel.submitSymptom { result in
-                                    switch result {
-                                    case .success(let response):
-                                        // 실제 앱에서는 AI 응답(예: 진료과 코드)을 받아 다음 화면으로 이동
-                                        print("AI 응답:", response)
-                                    case .failure(let error):
-                                        viewModel.errorMessage = error.localizedDescription
-                                    }
-                                }
+                CustomStateButton(title : "AI에게 물어보기", loadingText : "분석중...", isSubmitting : $viewModel.isSubmitting, isValid: viewModel.isValid,
+                    action : {
+                        hideKeyboard()
+                        Task {
+                            viewModel.submitSymptom {
+                                addItem()
                             }
+                        }
+                    }
                 )
+                
                 Spacer()
+                
             }
             .padding(.top, )
-            .navigationTitle("병원찾아줘")
+            .navigationTitle("AI 간단 진단")
+            .navigationDestination(isPresented: $viewModel.shouldShowResult) {
+                if let result = viewModel.diagnosisResult {
+                    DiagnosisResultView(fullResultText: result)
+                }
+            }
+        }
     }
-}
-
-struct SymptomInputView_Previews: PreviewProvider {
-    static var previews: some View {
-        SymptomInputView()
-            .preferredColorScheme(.light)
-
-        SymptomInputView()
-            .preferredColorScheme(.dark)
+    
+    private func addItem() {
+        guard let result = viewModel.diagnosisResult else { return }
+        
+        withAnimation {
+            let newItem = DiagnosisHistory(
+                diagnosisTime: Date(),
+                symptom: viewModel.symptomText,
+                diagnosisResult: result
+            )
+            modelContext.insert(newItem)
+            try? modelContext.save()
+        }
     }
 }

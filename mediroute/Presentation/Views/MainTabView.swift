@@ -22,7 +22,7 @@ struct MainTabView : View {
             }
             .tabItem {
                 Image(systemName: "list.bullet.clipboard")
-                Text("기록")
+                Text("진단 기록")
             }
         }
     }

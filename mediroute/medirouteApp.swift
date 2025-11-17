@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct medirouteApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([])
+        let schema = Schema([DiagnosisHistory.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
