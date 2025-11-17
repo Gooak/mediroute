@@ -7,9 +7,15 @@
 
 import SwiftUI
 import SwiftData
+import KakaoMapsSDK
 
 @main
 struct medirouteApp: App {
+    
+    init() {
+        SDKInitializer.InitSDK(appKey : Config.kakaoNativeAppKey)
+    }
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([DiagnosisHistory.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

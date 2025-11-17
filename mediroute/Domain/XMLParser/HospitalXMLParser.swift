@@ -13,8 +13,8 @@ class HospitalXMLParser: NSObject, XMLParserDelegate {
     private var name = ""
     private var address = ""
     private var phone = ""
-    private var xPos = ""
-    private var yPos = ""
+    private var xPos = 0.0
+    private var yPos = 0.0
 
     func parse(data: Data) -> [Hospital] {
         var xmlString = String(data: data, encoding: .utf8) ?? ""
@@ -35,8 +35,8 @@ class HospitalXMLParser: NSObject, XMLParserDelegate {
             name = ""
             address = ""
             phone = ""
-            xPos = ""
-            yPos = ""
+            xPos = 0.0
+            yPos = 0.0
         }
     }
 
@@ -48,8 +48,8 @@ class HospitalXMLParser: NSObject, XMLParserDelegate {
         case "dutyName": name += value
         case "dutyAddr": address += value
         case "dutyTel1": phone += value
-        case "wgs84Lon": xPos += value
-        case "wgs84Lat": yPos += value
+        case "wgs84Lon": xPos += Double(value) ?? 0.0
+        case "wgs84Lat": yPos += Double(value) ?? 0.0
         default: break
         }
     }

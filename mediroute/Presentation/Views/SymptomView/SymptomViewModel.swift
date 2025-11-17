@@ -19,6 +19,7 @@ final class SymptomViewModel: ObservableObject {
     @Published var errorMessage: String? = nil // 에러 메세지
     
     @Published var diagnosisResult: String? // 진단 결과
+    @Published var departmentName: String? // 병원 과
     @Published var shouldShowResult = false // 링크 활성화
     
     let maxLength: Int = 1000
@@ -45,9 +46,10 @@ final class SymptomViewModel: ObservableObject {
         Task {
             do {
                 let result = try await useCase.getDiagnosis(symptom: symptomText)
-
+                
                 await MainActor.run {
                     diagnosisResult = result
+                    departmentName = DataParse.getDepartmentCode(aiResponse: result)
                     isSubmitting = false
                     shouldShowResult = true
                     completionHandler()

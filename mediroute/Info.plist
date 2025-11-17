@@ -6,20 +6,22 @@
 	<string>$(GEMINI_API_KEY)</string>
 	<key>OpenDataApiKey</key>
 	<string>${OPEN_DATA_API_KEY}</string>
+	<key>KakaoNativeAppKey</key>
+	<string>${KAKAO_NATIVE_APP_KEY}</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>앱 사용시 위치 권한을 부여합니다.</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>apis.data.go.kr</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSAllowsInsecureHTTPLoads</key>
-                <true/>
-            </dict>
-        </dict>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>apis.data.go.kr</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -89,21 +89,25 @@ struct SymptomInputView: View {
             .padding(.top, )
             .navigationTitle("AI 간단 진단")
             .navigationDestination(isPresented: $viewModel.shouldShowResult) {
-                if let result = viewModel.diagnosisResult {
-                    DiagnosisResultView(fullResultText: result)
+                if let diagnosisResult = viewModel.diagnosisResult,
+                   let departmentName = viewModel.departmentName
+                {
+                    DiagnosisResultView(fullResultText: diagnosisResult, departmentName: departmentName)
                 }
             }
         }
     }
     
     private func addItem() {
-        guard let result = viewModel.diagnosisResult else { return }
+        guard let diagnosisResult = viewModel.diagnosisResult else { return }
+        guard let departmentName = viewModel.departmentName else { return }
         
         withAnimation {
             let newItem = DiagnosisHistory(
                 diagnosisTime: Date(),
                 symptom: viewModel.symptomText,
-                diagnosisResult: result
+                diagnosisResult: diagnosisResult,
+                departmentsName : departmentName
             )
             modelContext.insert(newItem)
             try? modelContext.save()

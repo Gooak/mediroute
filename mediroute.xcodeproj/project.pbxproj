@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4E6ECE472EC84C680076880E /* keys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ECE462EC84C5D0076880E /* keys.xcconfig */; };
 		4E6ECE4D2EC84DBB0076880E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ECE4C2EC84DBB0076880E /* .gitignore */; };
+		4E7826312ECAE55100C8D7A1 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7826302ECAE55100C8D7A1 /* KakaoMapsSDK-SPM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,19 @@
 			remoteInfo = mediroute;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E78262D2ECAE4E000C8D7A1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E6ECD882EC6F5C60076880E /* mediroute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mediroute.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7826312ECAE55100C8D7A1 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +115,7 @@
 				4E6ECD8A2EC6F5C60076880E /* mediroute */,
 				4E6ECD9A2EC6F5C70076880E /* medirouteTests */,
 				4E6ECDA42EC6F5C70076880E /* medirouteUITests */,
+				4E7826282ECAE4DB00C8D7A1 /* Frameworks */,
 				4E6ECD892EC6F5C60076880E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +130,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4E7826282ECAE4DB00C8D7A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,6 +147,7 @@
 				4E6ECD842EC6F5C60076880E /* Sources */,
 				4E6ECD852EC6F5C60076880E /* Frameworks */,
 				4E6ECD862EC6F5C60076880E /* Resources */,
+				4E78262D2ECAE4E000C8D7A1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +158,7 @@
 			);
 			name = mediroute;
 			packageProductDependencies = (
+				4E7826302ECAE55100C8D7A1 /* KakaoMapsSDK-SPM */,
 			);
 			productName = mediroute;
 			productReference = 4E6ECD882EC6F5C60076880E /* mediroute.app */;
@@ -217,6 +242,9 @@
 			);
 			mainGroup = 4E6ECD7F2EC6F5C60076880E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4E78262F2ECAE54500C8D7A1 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E6ECD892EC6F5C60076880E /* Products */;
 			projectDirPath = "";
@@ -419,11 +447,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mediroute/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "닥터고";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,11 +477,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mediroute/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "닥터고";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -578,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E78262F2ECAE54500C8D7A1 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E7826302ECAE55100C8D7A1 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E78262F2ECAE54500C8D7A1 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E6ECD802EC6F5C60076880E /* Project object */;
 }

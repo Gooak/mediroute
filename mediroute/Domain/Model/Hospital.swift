@@ -4,7 +4,7 @@
 //
 //  Created by 황진우 on 11/16/25.
 //
-
+import Foundation
 
 struct ApiResponse: Codable {
     let header: Header
@@ -24,10 +24,11 @@ struct Items: Codable {
     let item: [Hospital]
 }
 
-struct Hospital: Codable {
+struct Hospital: Identifiable, Codable {
+    var id = UUID()
     let hospitalName: String?
     let hospitalAddr: String?
     let hospitalTel: String?
-    let xPos: String?
-    let yPos: String?
+    let xPos: Double?
+    let yPos: Double?
 }

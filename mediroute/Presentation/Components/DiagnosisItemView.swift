@@ -8,7 +8,7 @@ import SwiftUI
 
 struct DiagnosisItemView: View {
     var item: DiagnosisHistory
-//    var onNearByHospital: () -> Void
+    var onNearByHospital: () -> Void
     var onDelete: (DiagnosisHistory) -> Void
 
     @State private var isExpanded: Bool = false
@@ -37,6 +37,7 @@ struct DiagnosisItemView: View {
                         .tint(.red)
                         
                         Button {
+                            onNearByHospital()
                         } label: {
                             Image(systemName: "magnifyingglass")
                         }
