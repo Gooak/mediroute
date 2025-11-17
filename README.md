@@ -11,10 +11,7 @@ AI 증상 분석으로 내 주변 최적의 병원 찾기
 |:---:|:---:|:---:|
 | <img src="https://raw.githubusercontent.com/your-repo/mediroute/main/screenshots/symptom.png" width="250"> | <img src="https://raw.githubusercontent.com/your-repo/mediroute/main/screenshots/result.png" width="250"> | <img src="https://raw.githubusercontent.com/your-repo/mediroute/main/screenshots/map.png" width="250"> |
 
-*(위 이미지는 예시이며, 실제 프로젝트의 스크린샷으로 교체해야 합니다.)*
-
 ### ▶️ 시연 영상 (Demo Video)
-*(시연 영상(e.g., recording.mp4)을 첨부할 수 있습니다.)*
 
 ---
 
